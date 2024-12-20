@@ -2,7 +2,7 @@
 name = "api"
 version = "0.1.0"
 description = ""
-authors = ["Jefferson Junior <jefferson.aleluia@cogecom.com.br>"]
+authors = ["Jefferson Junior <jeffersonjuniorcwb@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

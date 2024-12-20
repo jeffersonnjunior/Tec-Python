@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "rpa"
+version = "0.1.0"
+description = ""
+authors = ["Jefferson Junior <jefferson.aleluia@cogecom.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+selenium = "^4.27.1"
+webdriver-manager = "^4.0.2"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

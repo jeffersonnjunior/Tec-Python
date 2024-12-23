@@ -50,3 +50,13 @@
 #### Donations: Registra uma doação realizada por um Association.
 
 #### Orphanages: Representa um orfanato que cuida de um ou mais Dependents.
+
+
+
+## Rodar projeto
+
+#### Instale as dependência: poetry install
+
+#### Ative o ambiente virtual : poetry shell
+
+#### Rodar a API: uvicorn main:app --reload

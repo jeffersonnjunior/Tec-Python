@@ -22,13 +22,33 @@ def test_create_orphanage(db: Session):
     assert result.name == orphanage.name
 
 def test_get_orphanage(db: Session):
-    orphanage_id = 1
+    orphanage = OrphanageBase(
+        name="Orphanage 1",
+        address="Address 1",
+        contact_number="123456789",
+        cep="12345678",
+        state="State 1",
+        city="City 1"
+    )
+    created_orphanage = create_orphanage(db, orphanage)
+    orphanage_id = created_orphanage.id
+
     result = get_orphanage(db, orphanage_id)
     assert result.id == orphanage_id
 
 def test_update_orphanage(db: Session):
-    orphanage_id = 1
     orphanage = OrphanageBase(
+        name="Orphanage 1",
+        address="Address 1",
+        contact_number="123456789",
+        cep="12345678",
+        state="State 1",
+        city="City 1"
+    )
+    created_orphanage = create_orphanage(db, orphanage)
+    orphanage_id = created_orphanage.id
+
+    updated_orphanage = OrphanageBase(
         name="Updated Orphanage",
         address="Updated Address",
         contact_number="987654321",
@@ -36,10 +56,20 @@ def test_update_orphanage(db: Session):
         state="Updated State",
         city="Updated City"
     )
-    result = update_orphanage(db, orphanage_id, orphanage)
-    assert result.name == orphanage.name
+    result = update_orphanage(db, orphanage_id, updated_orphanage)
+    assert result.name == updated_orphanage.name
 
 def test_delete_orphanage(db: Session):
-    orphanage_id = 1
+    orphanage = OrphanageBase(
+        name="Orphanage 1",
+        address="Address 1",
+        contact_number="123456789",
+        cep="12345678",
+        state="State 1",
+        city="City 1"
+    )
+    created_orphanage = create_orphanage(db, orphanage)
+    orphanage_id = created_orphanage.id
+
     result = delete_orphanage(db, orphanage_id)
     assert result.id == orphanage_id

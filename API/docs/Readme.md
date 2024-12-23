@@ -38,6 +38,8 @@
 
 #### clients/: Contém os clientes para integração com APIs externas
 
+#### tests/: Contém as classes responsáveis por executar os testes unitários.
+
 
 ## Entidade
 

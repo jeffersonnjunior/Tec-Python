@@ -26,6 +26,8 @@
 
 #### services/: Lógica de negócio e integração com APIs externas.
 
+#### crud/: Funções para realizar as operações usando o ORM
+
 #### db/: Configuração e gerenciamento do banco de dados.
 
 #### models/: Definição das entidades e modelos de dados.

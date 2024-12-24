@@ -43,7 +43,7 @@
 #### tests/: Contém as classes responsáveis por executar os testes unitários.
 
 
-## Entidade
+## Entidades
 
 #### Dependent: Representa um beneficiário da Wayne Foundation.
 

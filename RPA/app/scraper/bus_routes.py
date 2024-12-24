@@ -1,3 +1,4 @@
+# app/scraper/bus_routes.py
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -7,21 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 class BusRoutesScraper:
-
-    def __init__(
-            self,
-            start_text:str,
-            destination_text:str
-        ):
+    def __init__(self, start_text: str, destination_text: str):
         self.start_text = start_text
         self.destination_text = destination_text
         self._driver: webdriver.Chrome | None = None
 
-
     @staticmethod
     def setup_driver() -> webdriver.Chrome:
         return webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
 
     @staticmethod
     def type_with_delay(element, text):
@@ -29,32 +23,34 @@ class BusRoutesScraper:
             element.send_keys(character)
             time.sleep(0.3)
 
-
-    def open_page(self,url):
+    def open_page(self, url):
         self._driver.get(url)
 
     def accept_cookies(self):
-        accept_button = WebDriverWait(self._driver, 10).until(
+        accept_button = WebDriverWait(self._driver, 3).until(
             EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
         )
         accept_button.click()
-        time.sleep(5)
+        time.sleep(3)
 
+    def click_location_result(self):
+        time.sleep(2)
+        location_result = WebDriverWait(self._driver, 3).until(
+            EC.element_to_be_clickable((By.ID, "location_0"))
+        )
+        location_result.click()
 
     def enter_text(self):
-
-        text_field_start = WebDriverWait(self._driver, 8).until(
-            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Escolha o local de partida']"))
+        text_field_start = WebDriverWait(self._driver, 3).until(
+            EC.presence_of_element_located((By.ID, "position_start"))
         )
-
         self.type_with_delay(text_field_start, self.start_text)
-
-        text_field_destination = WebDriverWait(self._driver, 8).until(
-            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Escolha o destino']"))
+        self.click_location_result()
+        text_field_destination = WebDriverWait(self._driver, 3).until(
+            EC.presence_of_element_located((By.ID, "position_end"))
         )
-
         self.type_with_delay(text_field_destination, self.destination_text)
-
+        self.click_location_result()
 
     def click_search(self):
         search_button = WebDriverWait(self._driver, 3).until(
@@ -62,37 +58,38 @@ class BusRoutesScraper:
         )
         search_button.click()
 
-
-    def click_span(self):
-        try:
-            tablist = self._driver.find_elements(By.CLASS_NAME, "tabs-wrapper")
-            tabs_not_selected = [tab for tab in tablist if not tab.get_attribute("aria-selected")]
-            tabs_not_selected[0].click()
-        except Exception as e:
-            print("Erro ao procurar o elemento 'span':", e)
-
+    def click_inner_element(self):
+        minimize_button = WebDriverWait(self._driver, 3).until(
+            EC.element_to_be_clickable((By.CLASS_NAME, "minimize-btn"))
+        )
+        minimize_button.click()
+        agency_span = WebDriverWait(self._driver, 3).until(
+            EC.element_to_be_clickable((By.CLASS_NAME, "agency"))
+        )
+        agency_span.click()
+        time.sleep(3)
 
     def click_result(self) -> list[str]:
         try:
             WebDriverWait(self._driver, 3).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "[id^='line_']"))
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div.content.ng-star-inserted"))
             )
-            elements = self._driver.find_elements(By.CSS_SELECTOR, "[id^='line_']")
-
-            lines = [element.text for element in elements[1:-1]]
+            elements = self._driver.find_elements(By.CSS_SELECTOR, "div.content.ng-star-inserted span")
+            lines = [element.text for element in elements if
+                     element.get_attribute("class") in ["type ng-star-inserted", "step-title ng-star-inserted",
+                                                        "title ng-star-inserted", "text"]]
             return lines
         except Exception as e:
             print("Elemento não encontrado:", e)
-
 
     def run(self) -> list[str]:
         self._driver = self.setup_driver()
         try:
             self.open_page("https://moovitapp.com/index/pt-br/transporte_público-Curitiba-942")
             self.accept_cookies()
-            self.enter_text()
             self.click_search()
-            self.click_span()
+            self.enter_text()
+            self.click_inner_element()
             return self.click_result()
         except Exception as e:
             print(e)

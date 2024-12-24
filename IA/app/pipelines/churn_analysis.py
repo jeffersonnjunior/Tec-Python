@@ -25,6 +25,3 @@ def run_churn_analysis() -> None:
     create_file(df)
 
     print(df.head())
-
-if __name__ == "__main__":
-    run_churn_analysis()

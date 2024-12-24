@@ -10,7 +10,7 @@
 
 #### FastAPI: Framework web para criar a API RESTful.
 
-#### SQLAlchemy: ORM (Object-Relational Mapping) para interação com o banco de dados.
+#### SQLAlchemy: ORM para interação com o banco de dados.
 
 #### PostgreSQL: Banco de dados relacional.
 

@@ -6,9 +6,11 @@
 
 ## Tecnologias Utilizadas
 
+#### Python: Linguagem utilizada no desenvolvimento do projeto.
+
 #### FastAPI: Framework web para criar a API RESTful.
 
-#### SQLAlchemy: ORM (Object-Relational Mapping) para interação com o banco de dados.
+#### SQLAlchemy: ORM para interação com o banco de dados.
 
 #### PostgreSQL: Banco de dados relacional.
 
@@ -26,6 +28,8 @@
 
 #### services/: Lógica de negócio e integração com APIs externas.
 
+#### crud/: Funções para realizar as operações usando o ORM
+
 #### db/: Configuração e gerenciamento do banco de dados.
 
 #### models/: Definição das entidades e modelos de dados.
@@ -35,6 +39,8 @@
 #### exceptions/: Contém as excessões personalizadas
 
 #### clients/: Contém os clientes para integração com APIs externas
+
+#### tests/: Contém as classes responsáveis por executar os testes unitários.
 
 
 ## Entidade
@@ -46,3 +52,13 @@
 #### Donations: Registra uma doação realizada por um Association.
 
 #### Orphanages: Representa um orfanato que cuida de um ou mais Dependents.
+
+
+
+## Rodar projeto
+
+#### Instale as dependências: poetry install
+
+#### Ative o ambiente virtual : poetry shell
+
+#### Rodar a API: uvicorn main:app --reload

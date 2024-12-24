@@ -6,6 +6,8 @@
 
 ## Tecnologias Utilizadas
 
+#### Python: Linguagem utilizada no desenvolvimento do projeto.
+
 #### FastAPI: Framework web para criar a API RESTful.
 
 #### SQLAlchemy: ORM (Object-Relational Mapping) para interação com o banco de dados.
@@ -55,7 +57,7 @@
 
 ## Rodar projeto
 
-#### Instale as dependência: poetry install
+#### Instale as dependências: poetry install
 
 #### Ative o ambiente virtual : poetry shell
 

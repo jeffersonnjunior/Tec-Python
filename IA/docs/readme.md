@@ -12,6 +12,8 @@
 
 ## Estrutura do Projeto
 
+#### app/: Contém a lógica principal do projeto.
+
 ##### data/: Contém os arquivos com os dados de entrada e saída.
 
 #### features/: retention.py: Implementa a função calculate_retention_time para calcular o tempo de permanência dos clientes.  clustering.py: Contém a lógica para treinamento do modelo (train_model) e previsão de clusters (make_predictions).
@@ -20,6 +22,7 @@
 
 #### scripts/: Scripts auxiliares para leitura e criação de arquivos Excel.
 
+#### tests/: Contém as classes responsáveis por executar os testes unitários.
 
 ## Funcionalidades
 #### Cálculo do Tempo de Permanência: Cálculo do tempo de permanência (em meses) para cada cliente, baseado nas datas de criação e saída.

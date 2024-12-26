@@ -16,7 +16,14 @@
 
 ##### data/: Contém os arquivos com os dados de entrada e saída.
 
-#### features/: retention.py: Implementa a função calculate_retention_time para calcular o tempo de permanência dos clientes.  clustering.py: Contém a lógica para treinamento do modelo (train_model) e previsão de clusters (make_predictions).
+#### `features/`
+- **`retention.py`**  
+  Implementa a função `calculate_retention_time` para calcular o tempo de permanência dos clientes.  
+
+- **`clustering.py`**  
+  - Contém a lógica para treinamento do modelo (`train_model`).  
+  - Fornece a funcionalidade de previsão de clusters (`make_predictions`).  
+
 
 #### pipeline/:Integra as funcionalidades de engenharia de dados, treinamento do modelo e previsão.
 
